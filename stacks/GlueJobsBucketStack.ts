@@ -1,6 +1,5 @@
 import {
   Bucket,
-  Function,
   type StackContext
 } from "sst/constructs";
 
@@ -18,32 +17,9 @@ export const GlueJobsBucketStack = ({ stack, app }: StackContext) => {
   const bucket = new Bucket(stack, "GlueJobsBucket");
 
   /**
-   * Here we use SST's "Function" construct to create a new lambda function
-   * named "TriggerGlueJobOnBreachDataUpload".
-   *
-   * The "handler" is at "packages/triggers/src/trigger-glue-job.ts" and the
-   * method invoked in the handler is named "main".
-   * 
-   * The environment object makes the name of the bucket available from inside
-   * the lambda function, referenced by "BUCKET_NAME".
-   */
-  // const lambda = new Function(stack, "TriggerGlueJobOnBreachDataUpload", {
-  //   handler: "packages/triggers/src/trigger-glue-job-on-create.main",
-  //   environment: {
-  //     BUCKET_NAME: bucket.bucketName,
-  //   },
-  // });
-
-  /**
-   * Grant the Lambda function permissions to read from the S3 bucket.
-   * This can be fine-tuned for granularity.
-   */
-  // bucket.attachPermissions([lambda]);
-
-  /**
    * Add notification subscriptions after the bucket has been created.
    * 
-   * objectCreated - A notification that triggers our lambda function
+   * objectCreated - A notification that triggers a lambda function
    *                 whenever an object is created in the bucket.
    */
   // bucket.addNotifications(stack, {
@@ -56,6 +32,5 @@ export const GlueJobsBucketStack = ({ stack, app }: StackContext) => {
   // Output the bucket name and lambda function name.
   stack.addOutputs({
     BucketName: bucket.bucketName,
-    // LambdaFunctionName: lambda.functionName,
   });
 }
