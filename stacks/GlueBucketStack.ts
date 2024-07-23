@@ -28,7 +28,7 @@ export const GlueBucketStack = ({ stack, app }: StackContext) => {
    * the lambda function, referenced by "BUCKET_NAME".
    */
   const lambda = new Function(stack, "TriggerGlueJobOnBreachDataUpload", {
-    handler: "packages/triggers/src/trigger-glue-job.main",
+    handler: "packages/triggers/src/trigger-glue-job-on-create.main",
     environment: {
       BUCKET_NAME: bucket.bucketName,
     },

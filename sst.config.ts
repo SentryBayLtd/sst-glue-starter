@@ -10,7 +10,7 @@ import { GlueBucketStack } from "./stacks/GlueBucketStack";
 export default {
   config(_input) {
     return {
-      name: "my-sst-app",
+      name: "glue-rbr",
       region: "us-east-1",
     };
   },

@@ -25,10 +25,25 @@ If you haven't done so already, then setup an [AWS profile](https://docs.aws.ama
 
     ```sh
     $ aws configure sso
-    SSO session name (Recommended): <sso-session-name>
+    SSO session name (Recommended): <sso-session-name e.g. albertk-glue-rbr>
     SSO start URL [None]: <sandbox-start-url>
     SSO region [None]: <sandbox-region>
     SSO registration scopes [None]: sso:account:access
+
+    Attempting to automatically open the SSO authorization page in your default browser.
+    If the browser does not open or you wish to use a different device to authorize this request, open the following URL:
+
+    https://device.sso.eu-west-2.amazonaws.com/
+
+    Then enter the code:
+
+    <SUPER-SECRET-CODE>
+    Using the account ID 123456789
+    The only role available to you is: AWSPowerUserAccess
+    Using the role name "AWSPowerUserAccess"
+    CLI default client Region [eu-west-1]: eu-west-2
+    CLI default output format [None]: json
+    CLI profile name [AWSPowerUserAccess-123456789]: <sso-session-name e.g. albertk-glue-rbr>
     ```
 
     (NOTE: Pick something unique but sensible for your session name i.e. `albertk-glue-rbr`)
