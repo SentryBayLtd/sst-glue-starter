@@ -7,7 +7,7 @@ export const main = async (event: S3Event) => {
 
   // Remember we made the bucket name available through the "environment"
   // property in GlueBucketStack? We can use it here in the lambda function.
-  const bucketName = process.env.BUCKET_NAME;
+  const bucketName = (process.env.BUCKET_NAME as string);
 
   // Get the file information from the event (the "object_created" event).
   const record = event.Records[0];
@@ -18,8 +18,8 @@ export const main = async (event: S3Event) => {
   const glueParams = {
     JobName: glueJobName,
     Arguments: {
-      "--bucketName": bucketName,
-      "--key": key,
+      bucketName: bucketName,
+      key: key,
     },
   };
 
