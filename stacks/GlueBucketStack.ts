@@ -1,5 +1,3 @@
-
-
 import {
   Bucket,
   Function,
@@ -7,9 +5,9 @@ import {
 } from "sst/constructs";
 
 /**
- * Create a new stack that creates an S3 bucket and sets up an event listener
- * to fire a lambda function that triggers a glue job whenever objects are
- * created in the bucket. 
+ * Creates a new stack that is responsible for creating an S3 bucket and
+ * setting up a listener to fire a lambda function whenever objects are
+ * created in the bucket.
  */
 export const GlueBucketStack = ({ stack, app }: StackContext) => {
 
@@ -37,7 +35,8 @@ export const GlueBucketStack = ({ stack, app }: StackContext) => {
   });
 
   /**
-   * Grant the Lambda function permissions to read from the S3 bucket
+   * Grant the Lambda function permissions to read from the S3 bucket.
+   * This can be fine-tuned for granularity.
    */
   bucket.attachPermissions([lambda]);
 
