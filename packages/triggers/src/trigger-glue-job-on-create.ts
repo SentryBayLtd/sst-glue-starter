@@ -5,9 +5,6 @@ export const main = (event: S3Event) => {
 
   // const glueClient = new GlueClient({});
 
-  // Remember we made the bucket name available through the "environment"
-  // property in GlueBucketStack? We can use it here in the lambda function.
-  // const bucketName = (process.env.BUCKET_NAME as string);
   console.log(event.Records);
   console.log(event.Records[0].s3);
   console.log(event.Records[0].requestParameters);
