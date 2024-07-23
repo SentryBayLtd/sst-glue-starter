@@ -65,3 +65,21 @@ That's it! If everything is successfully deployed, you should be able to see a n
 **Server:** Lambda, S3, Glue
 
 **Infrastructure:** SST, CDK, CloudFormation
+
+**Code:** TypeScript
+
+## Project Structure
+
+This project follows the typical [SST monorepo project structure](https://docs.sst.dev/learn/project-structure) with packages divided into [Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces).
+
+### stacks/
+
+The `stacks/` directory contains the project's [infrastructure defined as code (IaC)](https://sst.dev/chapters/what-is-infrastructure-as-code.html).
+
+### packages/
+
+The `packages/` directory houses everything that powers our backend - our [business logic](https://en.wikipedia.org/wiki/Domain-driven_design).
+
+- `packages/core`: Contains core business logic, widely used and reusable functions, handlers,utilities etc.
+
+- `packages/triggers`: Contains S3 bucket event triggers.
