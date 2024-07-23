@@ -68,7 +68,7 @@ If you haven't done so already, then setup an [AWS profile](https://docs.aws.ama
 
 4. Start the live development server
     ```sh
-    npx sst dev --profile <sso-profile> --stage <sso-stage>
+    npx sst dev --profile <sso-profile e.g. albertk-glue-rbr> --stage <sso-stage e.g. albertk-glue-rbr>
     ```
 
 That's it! If everything is successfully deployed, you should be able to see a new S3 bucket, and when you upload objects to this bucket, you should see glue jobs being fired in response.
