@@ -9,13 +9,13 @@ import {
  * setting up a listener to fire a lambda function whenever objects are
  * created in the bucket.
  */
-export const GlueBucketStack = ({ stack, app }: StackContext) => {
+export const GlueJobsBucketStack = ({ stack, app }: StackContext) => {
 
   /**
    * Here we use SST's "Bucket" construct to create a new S3 bucket
-   * named "BreachDataIngestBucket".
+   * named "GlueJobsBucket".
    */
-  const bucket = new Bucket(stack, "BreachDataIngestBucket");
+  const bucket = new Bucket(stack, "GlueJobsBucket");
 
   /**
    * Here we use SST's "Function" construct to create a new lambda function

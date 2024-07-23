@@ -1,5 +1,6 @@
 import { SSTConfig } from "sst";
-import { GlueBucketStack } from "./stacks/GlueBucketStack";
+import { GlueJobsBucketStack } from "./stacks/GlueJobsBucketStack";
+import { GlueBreachDataBucketStack } from "./stacks/GlueBreachDataBucketStack";
 
 /**
  * Configures and deploys our projects.
@@ -15,6 +16,8 @@ export default {
     };
   },
   stacks(app) {
-    app.stack(GlueBucketStack);
+    app
+      .stack(GlueJobsBucketStack)
+      .stack(GlueBreachDataBucketStack)
   }
 } satisfies SSTConfig;
