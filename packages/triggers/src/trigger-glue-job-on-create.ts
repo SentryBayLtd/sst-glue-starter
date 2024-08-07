@@ -1,36 +1,51 @@
-import { S3Event } from "aws-lambda";
-// import { GlueClient } from "@aws-sdk/client-glue";
+import {
+  S3Event
+} from "aws-lambda";
+import {
+  GlueClient
+} from "@aws-sdk/client-glue";
+import {
+  StartJobRunCommand
+} from "@aws-sdk/client-glue";
 
-export const main = (event: S3Event) => {
+export const main = async (event: S3Event) => {
 
-  // const glueClient = new GlueClient({});
+  const glueClient = new GlueClient({});
 
-  console.log(event.Records);
   console.log(event.Records[0].s3);
-  console.log(event.Records[0].requestParameters);
-  // console.log(bucketName);
 
-  // Get the file information from the event (the "object_created" event).
-  // const record = event.Records[0];
-  // const key = record.s3.object.key;
+  let bucketName = event.Records[0].s3.bucket["name"]
+
+  let object_key = event.Records[0].s3.object["key"]
 
   // Define the Glue job parameters
-  // const glueJobName = "my-glue-job"; // Replace with your Glue job name
-  // const glueParams = {
-  //   JobName: glueJobName,
-  //   Arguments: {
-  //     bucketName: bucketName,
-  //     key: key,
-  //   },
-  // };
+  const glueJobName = "sst_trigger_job";
+
+  const glueParams = {
+      JobName: glueJobName,
+      Arguments: {
+          "--BUCKET_NAME": bucketName,
+          "--OBJECT_KEY": object_key,
+      },
+  };
 
   // Start the Glue job
   try {
-    console.log('mock glue job');
-    // const command = new StartJobRunCommand(glueParams);
-    // const response = await glueClient.send(command);
-    // console.log(`Started Glue job ${glueJobName}, run ID: ${response.JobRunId}`);
+
+      if (object_key.includes(".txt") || object_key.includes(".csv")) {
+
+          console.log('Start glue job');
+
+          const command = new StartJobRunCommand(glueParams);
+
+          const response = await glueClient.send(command);
+
+          console.log(`Started Glue job ${glueJobName}, run ID: ${response.JobRunId}`);
+      } else {
+          console.log("Object is not a file, glue job not triggered.")
+      }
+
   } catch (error) {
-    console.error("Error starting Glue job:", error);
+      console.error("Error starting Glue job:", error);
   }
 };
